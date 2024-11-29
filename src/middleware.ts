@@ -15,35 +15,46 @@ function getLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // Skip middleware for static files and API routes
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname.includes('/.') ||
+    pathname.includes('/favicon.ico')
+  ) {
+    return NextResponse.next();
+  }
+
   // Check if the pathname is missing a locale
   const pathnameIsMissingLocale = locales.every(
     locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
-  // Redirect if there is no locale
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
-    return NextResponse.redirect(
-      new URL(`/${locale}${pathname}`, request.url)
-    );
-  }
-
-  // Get locale from pathname
-  const locale = pathname.split('/')[1];
+  // Get the locale either from the pathname or using the negotiator
+  const locale = pathnameIsMissingLocale ? getLocale(request) : pathname.split('/')[1];
 
   // Check authentication
-  const isAuthenticated = request.cookies.has('auth');
+  const isAuthenticated = request.cookies.get('auth')?.value === 'true';
   const isLoginPage = pathname.includes('/login');
 
+  // If not authenticated and not on login page, redirect to login
   if (!isAuthenticated && !isLoginPage) {
     return NextResponse.redirect(
       new URL(`/${locale}/login`, request.url)
     );
   }
 
+  // If authenticated and on login page, redirect to home
   if (isAuthenticated && isLoginPage) {
     return NextResponse.redirect(
       new URL(`/${locale}`, request.url)
+    );
+  }
+
+  // Handle missing locale
+  if (pathnameIsMissingLocale) {
+    return NextResponse.redirect(
+      new URL(`/${locale}${pathname}`, request.url)
     );
   }
 
@@ -51,8 +62,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    // Skip all internal paths (_next)
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

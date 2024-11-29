@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/hs-code-classifier' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/hscode-classifier' : '',
+  trailingSlash: true,
 };
 
 export default nextConfig;

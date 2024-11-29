@@ -1,10 +1,11 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      ADMIN_USERNAME: string;
-      ADMIN_PASSWORD: string;
-      USER_USERNAME: string;
-      USER_PASSWORD: string;
+      NEXT_PUBLIC_ADMIN_USERNAME: string;
+      NEXT_PUBLIC_ADMIN_PASSWORD: string;
+      NEXT_PUBLIC_USER_USERNAME: string;
+      NEXT_PUBLIC_USER_PASSWORD: string;
+      NEXT_PUBLIC_API_URL: string;
     }
   }
 }

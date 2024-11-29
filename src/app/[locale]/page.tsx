@@ -5,9 +5,10 @@ import { getDictionary } from '@/i18n/get-dictionary';
 import { type ValidLocale } from '@/i18n/config';
 import { usePathname } from 'next/navigation';
 import HSCodeForm from '@/app/components/HSCodeForm';
+import { Dictionary } from '@/types/dictionary';
 
 export default function HomePage() {
-  const [dictionary, setDictionary] = useState<any>(null);
+  const [dictionary, setDictionary] = useState<Dictionary | null>(null);
   const pathname = usePathname();
   const locale = pathname.split('/')[1] as ValidLocale;
 

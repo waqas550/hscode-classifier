@@ -1,21 +1,24 @@
 import { NextResponse } from 'next/server';
 
-if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD || !process.env.USER_USERNAME || !process.env.USER_PASSWORD) {
+if (!process.env.NEXT_PUBLIC_ADMIN_USERNAME || 
+    !process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 
+    !process.env.NEXT_PUBLIC_USER_USERNAME || 
+    !process.env.NEXT_PUBLIC_USER_PASSWORD) {
   throw new Error('Missing required environment variables for authentication');
 }
 
 const users = [
   {
     id: '1',
-    username: process.env.ADMIN_USERNAME,
-    password: process.env.ADMIN_PASSWORD,
+    username: process.env.NEXT_PUBLIC_ADMIN_USERNAME,
+    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD,
     name: 'Admin User',
     role: 'admin',
   },
   {
     id: '2',
-    username: process.env.USER_USERNAME,
-    password: process.env.USER_PASSWORD,
+    username: process.env.NEXT_PUBLIC_USER_USERNAME,
+    password: process.env.NEXT_PUBLIC_USER_PASSWORD,
     name: 'Regular User',
     role: 'user',
   },

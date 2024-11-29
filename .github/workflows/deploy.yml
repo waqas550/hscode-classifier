@@ -17,26 +17,33 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: 'npm'
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      
       - name: Install dependencies
         run: npm ci
+      
       - name: Build with Next.js
-        run: npm run build
         env:
-          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          USER_USERNAME: ${{ secrets.USER_USERNAME }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-          API_URL: ${{ secrets.API_URL }}
+          NEXT_PUBLIC_API_URL: 'https://trader-5n0t.onrender.com/api/v1/hs-code/classify'
+          NEXT_PUBLIC_ADMIN_USERNAME: admin
+          NEXT_PUBLIC_ADMIN_PASSWORD: admin123
+          NEXT_PUBLIC_USER_USERNAME: user
+          NEXT_PUBLIC_USER_PASSWORD: user123
+          NEXT_PUBLIC_BASE_PATH: '/hscode-classifier'
+        run: npm run build
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

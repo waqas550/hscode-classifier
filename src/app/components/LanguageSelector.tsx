@@ -5,7 +5,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { GlobeAltIcon, CheckIcon } from '@heroicons/react/20/solid';
 import { useRouter, usePathname } from 'next/navigation';
 import { useCallback } from 'react';
-import { locales, type ValidLocale } from '@/i18n/config';
+import { type ValidLocale } from '@/i18n/config';
 
 interface Language {
   code: ValidLocale;

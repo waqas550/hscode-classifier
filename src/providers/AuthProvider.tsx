@@ -1,7 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback } from 'react';
-import { User, AuthState } from '@/types/auth';
+import { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { AuthState } from '@/types/auth';
 import { authenticate } from '@/lib/auth';
 import { useRouter, usePathname } from 'next/navigation';
 import Cookies from 'js-cookie';
@@ -14,14 +14,19 @@ interface AuthContextType extends AuthState {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [authState, setAuthState] = useState<AuthState>(() => ({
+  const [authState, setAuthState] = useState<AuthState>({
     user: null,
-    isAuthenticated: Cookies.get('auth') === 'true',
-  }));
+    isAuthenticated: false,
+  });
   
   const router = useRouter();
   const pathname = usePathname();
-  const locale = pathname.split('/')[1];
+  const locale = pathname?.split('/')[1];
+
+  useEffect(() => {
+    const isAuth = Cookies.get('auth') === 'true';
+    setAuthState(prev => ({ ...prev, isAuthenticated: isAuth }));
+  }, []);
 
   const login = useCallback(async (username: string, password: string) => {
     try {
@@ -41,7 +46,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = useCallback(() => {
     setAuthState({ user: null, isAuthenticated: false });
     Cookies.remove('auth');
-    router.push(`/${locale}/login`);
+    if (locale) {
+      router.push(`/${locale}/login`);
+    }
   }, [router, locale]);
 
   return (
