@@ -27,10 +27,13 @@ const HSCodeForm = () => {
     setError(null);
 
     try {
-      const response = await fetch('/api/hs-code', {
+      const response = await fetch('https://trader-5n0t.onrender.com/api/v1/hs-code/classify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Origin': 'https://waqas550.github.io',
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify({
           product_description: query,
@@ -38,21 +41,21 @@ const HSCodeForm = () => {
         }),
       });
 
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Server returned non-JSON response');
+      }
+
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(
-          data.message || 
-          dictionary?.hsCode?.error || 
-          'Classification failed'
-        );
+        throw new Error(data.message || 'Classification failed');
       }
 
       setResult(data);
     } catch (err) {
       console.error('Error details:', err);
-      const errorMessage = err instanceof Error ? err.message : 'Classification failed';
-      setError(errorMessage || dictionary?.common?.error || 'An error occurred while processing your request');
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsLoading(false);
     }
