@@ -26,8 +26,12 @@ const HSCodeForm = () => {
     setIsLoading(true);
     setError(null);
 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://trader-5n0t.onrender.com/api/v1/hs-code/classify';
+
     try {
-      const response = await fetch('https://trader-5n0t.onrender.com/api/v1/hs-code/classify', {
+      console.log('Sending request to:', API_URL); // Debug log
+
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,14 +39,21 @@ const HSCodeForm = () => {
           'Origin': 'https://waqas550.github.io',
           'Access-Control-Allow-Origin': '*'
         },
+        credentials: 'omit', // Important: don't send credentials
         body: JSON.stringify({
           product_description: query,
           language: locale
         }),
       });
 
+      console.log('Response status:', response.status); // Debug log
+      console.log('Response headers:', Object.fromEntries(response.headers.entries())); // Debug log
+
+      // Check if response is JSON
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text(); // Get the actual response text
+        console.error('Non-JSON response:', text); // Debug log
         throw new Error('Server returned non-JSON response');
       }
 
