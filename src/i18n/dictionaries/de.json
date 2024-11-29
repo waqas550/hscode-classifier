@@ -1,0 +1,41 @@
+{
+    "common": {
+      "title": "HS-Code Klassifizierer",
+      "theme": "Design",
+      "login": "Anmelden",
+      "logout": "Abmelden",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "system": "System",
+      "error": "Fehler",
+      "success": "Erfolg"
+    },
+    "home": {
+      "title": "Produktklassifizierung",
+      "description": "Klassifizieren Sie Produkte mit HS-Codes",
+      "classifyButton": "Produkt klassifizieren",
+      "processing": "Verarbeitung...",
+      "result": "Klassifizierungsergebnis",
+      "noResult": "Kein Ergebnis verfügbar"
+    },
+    "login": {
+      "title": "Anmelden",
+      "description": "Geben Sie Ihre Anmeldedaten ein",
+      "error": "Ungültiger Benutzername oder Passwort",
+      "submit": "Anmelden",
+      "forgotPassword": "Passwort vergessen?"
+    },
+    "hsCode": {
+      "title": "HS-Code Klassifizierung",
+      "description": "Geben Sie Produktdetails zur Klassifizierung ein",
+      "input": "Produktbeschreibung",
+      "submit": "Klassifizieren",
+      "result": "Klassifizierungsergebnis",
+      "error": "Klassifizierung fehlgeschlagen",
+      "interpretedDescription": "Interpretierte Beschreibung:",
+      "hsCodeLabel": "HS-Code:",
+      "explanation": "Erklärung:"
+    }
+  }

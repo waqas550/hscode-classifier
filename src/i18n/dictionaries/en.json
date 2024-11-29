@@ -1,0 +1,41 @@
+{
+    "common": {
+      "title": "HS Code Classifier",
+      "theme": "Theme",
+      "login": "Login",
+      "logout": "Logout",
+      "username": "Username",
+      "password": "Password",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System",
+      "error": "Error",
+      "success": "Success"
+    },
+    "home": {
+      "title": "Product Classification",
+      "description": "Classify products with HS codes",
+      "classifyButton": "Classify Product",
+      "processing": "Processing...",
+      "result": "Classification Result",
+      "noResult": "No result available"
+    },
+    "login": {
+      "title": "Login",
+      "description": "Enter your credentials to access the application",
+      "error": "Invalid username or password",
+      "submit": "Sign In",
+      "forgotPassword": "Forgot password?"
+    },
+    "hsCode": {
+      "title": "HS Code Classification",
+      "description": "Enter product details for classification",
+      "input": "Product Description",
+      "submit": "Classify",
+      "result": "Classification Result",
+      "error": "Classification failed",
+      "interpretedDescription": "Interpreted Description:",
+      "hsCodeLabel": "HS Code:",
+      "explanation": "Explanation:"
+    }
+  }
