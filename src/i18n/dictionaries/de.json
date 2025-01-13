@@ -14,7 +14,7 @@
     },
     "home": {
       "title": "Warentarifierung",
-      "description": "Klassifizieren Sie Produkte mit HS-Codes",
+      "description": "Reihen Sie Waren nach dem Harmonisierten System (HS) ein",
       "classifyButton": "Produkt klassifizieren",
       "processing": "Verarbeitung...",
       "result": "Klassifizierungsergebnis",
@@ -28,10 +28,10 @@
       "forgotPassword": "Passwort vergessen?"
     },
     "hsCode": {
-      "title": "HS-Code Klassifizierung",
-      "description": "Geben Sie Produktdetails zur Klassifizierung ein",
-      "input": "Produktbeschreibung",
-      "submit": "Klassifizieren",
+      "title": "HS-Code Tarifierung",
+      "description": "Bitte geben Sie die Warenbeschreibung ein",
+      "input": "Warenbeschreibung",
+      "submit": "Einreihung",
       "result": "Klassifizierungsergebnis",
       "error": "Klassifizierung fehlgeschlagen",
       "interpretedDescription": "Interpretierte Beschreibung:",
