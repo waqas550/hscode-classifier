@@ -13,7 +13,7 @@
       "success": "Erfolg"
     },
     "home": {
-      "title": "Produktklassifizierung",
+      "title": "Warentarifierung",
       "description": "Klassifizieren Sie Produkte mit HS-Codes",
       "classifyButton": "Produkt klassifizieren",
       "processing": "Verarbeitung...",
