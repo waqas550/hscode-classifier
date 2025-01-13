@@ -94,9 +94,9 @@ const HSCodeForm = () => {
             placeholder={dictionary.hsCode.description}
             required
           />
-          <p className="text-sm text-muted-foreground">
+{/*           <p className="text-sm text-muted-foreground">
             {dictionary.hsCode.description}
-          </p>
+          </p> */}
         </div>
 
         <button
