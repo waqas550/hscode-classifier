@@ -35,9 +35,9 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold leading-none tracking-tight">
             {dictionary.hsCode.title}
           </h2>
-          <p className="text-sm text-muted-foreground">
+{/*           <p className="text-sm text-muted-foreground">
             {dictionary.hsCode.description}
-          </p>
+          </p> */}
         </div>
         <div className="p-6 pt-0">
           <HSCodeForm />
